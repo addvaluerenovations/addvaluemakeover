@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Our Work | Add Value Makeover</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+
+<meta name="description" content="Real Auckland homes refreshed and renovated by the Add Value Group — kitchens, bathrooms, whole homes and extensions. The standard of finish behind every Add Value Makeover.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@300;400;500;600;700&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--ink:#21384a;--ink-2:#16283a;--ink-soft:#3a5566;--cream:#fbf3e6;--cream-2:#f4e9d6;--paper:#fffaf0;--green:#2f9e7c;--green-deep:#1d7a5c;--honey:#edab43;--honey-deep:#d2902a;--coral:#e3795a;--line:rgba(33,56,74,.13);--line-light:rgba(251,243,230,.16);--disp:"Bricolage Grotesque",Georgia,serif;--sans:"Hanken Grotesk",system-ui,sans-serif;--hand:"Caveat",cursive}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--sans);background:var(--cream);color:var(--ink);line-height:1.62;-webkit-font-smoothing:antialiased}
+  body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.035;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 30px;position:relative;z-index:1}
+  h1,h2,h3{font-family:var(--disp);font-weight:800;line-height:1.06;letter-spacing:-.02em}
+  a{color:inherit;text-decoration:none}
+  .overline{font-weight:700;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--green-deep);display:inline-flex;align-items:center;gap:.55rem}
+  .overline::before{content:"";width:26px;height:9px;border-radius:5px;background:var(--honey)}
+  .hl{position:relative;white-space:nowrap;z-index:1}
+  .hl::after{content:"";position:absolute;left:-.08em;right:-.08em;bottom:.06em;height:.42em;border-radius:.4em;z-index:-1;transform:rotate(-1.4deg);background:var(--honey);opacity:.5}
+  .hl.green::after{background:var(--green);opacity:.32}
+  .btn{display:inline-flex;align-items:center;gap:.55em;font-weight:700;font-size:.97rem;padding:1.05rem 1.9rem;border-radius:50px;cursor:pointer;border:2px solid transparent;transition:.25s}
+  .btn-green{background:var(--green);color:#fff}.btn-green:hover{background:var(--green-deep);transform:translateY(-2px)}
+  .btn-out{background:transparent;border-color:var(--ink);color:var(--ink)}.btn-out:hover{background:var(--ink);color:var(--cream);transform:translateY(-2px)}
+  .arrow{transition:transform .25s}.btn:hover .arrow{transform:translateX(4px)}
+  /* nav */
+  header.nav{position:sticky;top:0;z-index:1000;background:rgba(251,243,230,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .nav-in{display:flex;align-items:center;justify-content:space-between;height:72px;max-width:1160px;margin:0 auto;padding:0 30px}
+  .brand{display:flex;align-items:center;gap:.6rem}
+  .brand .dot{width:30px;height:30px;border-radius:9px;background:var(--green);position:relative;flex:none}.brand .dot::after{content:"";position:absolute;inset:7px;border-radius:4px;background:var(--honey)}
+  .brand .t{font-family:var(--disp);font-size:1.3rem;font-weight:800}.brand .t span{color:var(--green-deep)}
+  .brand .g{font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);font-weight:700;display:block;margin-top:1px}
+  .nav-links{display:flex;gap:1.7rem;align-items:center}
+  .nav-links a{font-size:.9rem;font-weight:600;color:var(--ink-soft);transition:.2s}.nav-links a:hover,.nav-links a.on{color:var(--green-deep)}
+  .nav-cta{background:var(--ink);color:var(--cream)!important;padding:.6rem 1.2rem;border-radius:50px}.nav-cta:hover{background:var(--green)}
+  @media(max-width:960px){.nav-links a:not(.nav-cta){display:none}}
+  /* page head */
+  .phead{padding:5rem 0 2.5rem;position:relative;overflow:hidden}
+  .phead::before{content:"";position:absolute;top:-120px;right:6%;width:360px;height:360px;border-radius:50%;background:radial-gradient(closest-side,rgba(47,158,124,.16),transparent 70%)}
+  .phead h1{font-size:clamp(2.6rem,5.6vw,4rem);margin:1rem 0 .8rem}
+  .phead p{color:var(--ink-soft);font-size:1.14rem;max-width:60ch}
+  .pstats{display:flex;gap:2.5rem;margin-top:2rem;flex-wrap:wrap}
+  .pstats .n{font-family:var(--disp);font-weight:800;font-size:1.8rem;color:var(--green-deep)}
+  .pstats .l{font-size:.82rem;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.08em}
+  /* filters */
+  .filters{display:flex;gap:.5rem;flex-wrap:wrap;margin:2.5rem 0 2rem}
+  .filt{font-family:var(--sans);font-weight:700;font-size:.9rem;padding:.7rem 1.3rem;border-radius:50px;border:2px solid var(--line);background:var(--paper);color:var(--ink-soft);cursor:pointer;transition:.2s}
+  .filt:hover{border-color:var(--green)}.filt.on{background:var(--green);color:#fff;border-color:var(--green)}
+  /* grid */
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.3rem;padding-bottom:5rem}
+  @media(max-width:900px){.grid{grid-template-columns:1fr 1fr}}@media(max-width:600px){.grid{grid-template-columns:1fr}}
+  .pcard{position:relative;aspect-ratio:4/3.3;border-radius:20px;overflow:hidden;background-size:cover;background-position:center;display:block;transition:.3s;box-shadow:0 12px 30px -24px rgba(33,56,74,.6)}
+  .pcard:hover{transform:translateY(-5px);box-shadow:0 26px 50px -28px rgba(33,56,74,.6)}
+  .pcard .cap{position:absolute;left:0;right:0;bottom:0;padding:2.2rem 1.3rem 1.1rem;background:linear-gradient(transparent,rgba(15,23,35,.9));color:#fff}
+  .pcard .cap .ty{font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--honey)}
+  .pcard .cap h3{font-size:1.18rem;font-weight:700;margin:.2rem 0 .15rem;line-height:1.15}
+  .pcard .cap small{color:rgba(255,255,255,.8);font-weight:500}
+  .pcard.hide{display:none}
+  /* cta band */
+  .cta{background:var(--green);color:#fff;text-align:center;padding:5rem 0;position:relative;overflow:hidden}
+  .cta::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 80% 0,rgba(237,171,67,.28),transparent 45%)}
+  .cta h2{font-size:clamp(1.9rem,3.6vw,2.8rem);max-width:22ch;margin:.6rem auto 1.4rem;position:relative;z-index:2}
+  .cta .btn-honey{background:var(--honey);color:var(--ink);position:relative;z-index:2}.cta .btn-honey:hover{background:var(--honey-deep);transform:translateY(-2px)}
+  .note{font-family:var(--hand);font-size:1.4rem;color:#fff;display:block;margin-top:1rem;position:relative;z-index:2;opacity:.9}
+  footer{background:var(--ink-2);color:rgba(251,243,230,.6);padding:2.6rem 0;font-size:.86rem}
+  .foot-in{display:flex;justify-content:space-between;gap:1.4rem;flex-wrap:wrap;align-items:center;max-width:1160px;margin:0 auto;padding:0 30px}
+  footer b{color:var(--honey);font-family:var(--disp);font-weight:700;font-size:1.05rem}
+  footer a{color:rgba(251,243,230,.75)}footer a:hover{color:var(--honey)}
+  .rev{opacity:0;transform:translateY(22px);transition:.7s}.rev.in{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-in">
+    <a class="brand" href="index.html"><svg class="mark" style="flex:none" width="30" height="30" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-label="Add Value Makeover"><rect x="2" y="2" width="60" height="60" rx="17" fill="#2f9e7c"/><text x="31" y="45" font-family="Bricolage Grotesque,serif" font-weight="800" font-size="38" fill="#fffaf0" text-anchor="middle">M</text><circle cx="48" cy="17" r="5" fill="#edab43"/></svg><span><span class="t">Add Value <span>Makeover</span></span><span class="g">An Add Value Group Co.</span></span></a>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="process.html">Our Process</a>
+      <a href="projects.html" class="on">Our Work</a>
+      <a href="about.html">About</a>
+      <a href="team.html">Our Team</a>
+      <a href="renovation-centre.html">Renovation Centre</a>
+      <a href="areas-we-cover.html">Areas</a>
+      <a class="nav-cta" href="add-value-makeover-estimator.html">Instant Estimate</a>
+    </nav>
+  </div>
+</header>
+
+<section class="phead">
+  <div class="wrap rev in">
+    <span class="overline">Our Work · Auckland</span>
+    <h1>Homes we've made <span class="hl green">sale-ready.</span></h1>
+    <p>Add Value Makeover is backed by the Add Value Group — 500+ completed Auckland renovations. This is the standard of finish behind every refresh, from a one-week quick tidy to whole-home transformations.</p>
+    <div class="pstats">
+      <div><div class="n">500+</div><div class="l">Homes completed</div></div>
+      <div><div class="n">4.8★</div><div class="l">Google rating</div></div>
+      <div><div class="n">30+</div><div class="l">Auckland suburbs</div></div>
+      <div><div class="n">10-Yr</div><div class="l">Master Builder guarantee</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="filters rev in">
+    <button class="filt on" data-cat="all">All work</button>
+    <button class="filt" data-cat="kitchenbath">Kitchen &amp; Bathroom</button>
+    <button class="filt" data-cat="whole">Whole Home</button>
+    <button class="filt" data-cat="extension">Extensions</button>
+  </div>
+
+  <div class="grid" id="grid">
+    <a class="pcard rev in" data-cat="whole" href="https://addvaluerenovations.co.nz/project/mt-roskill-full-home-renovation/" style="background-image:url('https://addvaluerenovations.co.nz/wp-content/uploads/avr-mt-roskill-kitchen-waterfall-island-2025.jpg')"><span class="cap"><span class="ty">Full Home · 2025</span><h3>A Whole Home Made New</h3><small>Mt Roskill · waterfall-island kitchen</small></span></a>
+    <a class="pcard rev in" data-cat="kitchenbath" href="https://addvaluerenovations.co.nz/project/stay-or-sell-west-auckland-home-renovation/" style="background-image:url('https://addvaluerenovations.co.nz/wp-content/uploads/avr-lynfield-alaunia-kitchen-wood-benchtop-2025.jpg')"><span class="cap"><span class="ty">Kitchen &amp; Bath · 2025</span><h3>Stay, Not Sell</h3><small>Lynfield · timber-benchtop kitchen</small></span></a>
+    <a class="pcard rev in" data-cat="whole" href="https://addvaluerenovations.co.nz/project/blockhouse-bay-award-winning-renovation/" style="background-image:url('https://addvaluerenovations.co.nz/wp-content/uploads/Secondary-lounge-downstairs-featuring-neutral-tones-large-window-and-relaxed-family-seating-area.jpg')"><span class="cap"><span class="ty">Full Home · 2026</span><h3>Reimagined From Within</h3><small>Blockhouse Bay · award-winning</small></span></a>
+    <a class="pcard rev in" data-cat="kitchenbath" href="https://addvaluerenovations.co.nz/project/west-auckland-kitchen-bathroom-renovation/" style="background-image:url('https://addvaluerenovations.co.nz/wp-content/uploads/after.png')"><span class="cap"><span class="ty">Kitchen &amp; Bath · 2024</span><h3>Modern Classic</h3><small>West Auckland · kitchen + bath + deck</small></span></a>
+    <a class="pcard rev in" data-cat="kitchenbath" href="https://addvaluerenovations.co.nz/project/bungalow-renovations-open-plan-kitchen-west-auckland/" style="background-image:url('https://addvaluerenovations.co.nz/wp-content/uploads/avr-west-auckland-bungalow-open-plan-dining-2023.jpg')"><span class="cap"><span class="ty">Kitchen &amp; Bath · 2023</span><h3>Opening Up a Bungalow</h3><small>West Auckland · open-plan kitchen</small></span></a>
+    <a class="pcard rev in" data-cat="kitchenbath" href="https://addvaluerenovations.co.nz/project/south-auckland-kitchen-bathroom-renovation/" style="background-image:url('https://addvaluerenovations.co.nz/wp-content/uploads/avr-south-auckland-kitchen-modern-2023.png')"><span class="cap"><span class="ty">Kitchen &amp; Bath · 2023</span><h3>Redefining Home</h3><small>South Auckland · kitchen + bathroom</small></span></a>
+    <a class="pcard rev in" data-cat="extension" href="https://addvaluerenovations.co.nz/project/north-shore-home-extension-master-suite/" style="background-image:url('https://addvaluerenovations.co.nz/wp-content/uploads/avr-north-shore-master-suite-bathroom-2023.png')"><span class="cap"><span class="ty">Extension · 2023</span><h3>Expanding More Than Space</h3><small>North Shore · master suite + bath</small></span></a>
+    <a class="pcard rev in" data-cat="extension" href="https://addvaluerenovations.co.nz/project/onehunga-home-extension-master-suite/" style="background-image:url('https://addvaluerenovations.co.nz/wp-content/uploads/avr-onehunga-after-extension-2023.png')"><span class="cap"><span class="ty">Extension · 2023</span><h3>Built for the Next Chapter</h3><small>Onehunga · ground-floor extension</small></span></a>
+    <a class="pcard rev in" data-cat="extension" href="https://addvaluerenovations.co.nz/project/epsom-home-recladding-second-storey-extension/" style="background-image:url('https://addvaluerenovations.co.nz/wp-content/uploads/avr-epsom-reclad-second-storey-finished-2023.png')"><span class="cap"><span class="ty">Reclad + Extension · 2023</span><h3>When Selling Isn't an Option</h3><small>Epsom · reclad + second storey</small></span></a>
+    <a class="pcard rev in" data-cat="extension" href="https://addvaluerenovations.co.nz/project/home-extensions-conservatory-conversions-north-shore/" style="background-image:url('https://addvaluerenovations.co.nz/wp-content/uploads/Modern-open-plan-living-space-created-from-conservatory-conversion.png')"><span class="cap"><span class="ty">Extension · 2023</span><h3>A Home Reborn</h3><small>North Shore · conservatory conversion</small></span></a>
+    <a class="pcard rev in" data-cat="extension" href="https://addvaluerenovations.co.nz/project/second-level-extension-louvertec-roof-central-auckland/" style="background-image:url('https://addvaluerenovations.co.nz/wp-content/uploads/carport-with-deck-on-top.png')"><span class="cap"><span class="ty">2nd Storey · 2023</span><h3>Doubling the Floor Area</h3><small>Mt Roskill · second storey + Louvretec</small></span></a>
+    <a class="pcard rev in" data-cat="whole" href="https://addvaluerenovations.co.nz/project/remuera-garage-conversion-kitchen-bathroom-renovations/" style="background-image:url('https://addvaluerenovations.co.nz/wp-content/uploads/after-1.png')"><span class="cap"><span class="ty">Full Home · 2024</span><h3>Making the Downstairs Legal</h3><small>Remuera · garage conversion + reno</small></span></a>
+    <a class="pcard rev in" data-cat="whole" href="https://addvaluerenovations.co.nz/project/creating-space-for-family-life-renovations/" style="background-image:url('https://addvaluerenovations.co.nz/wp-content/uploads/AVR-Photo-Ida-Larsson-White-Lynx-12978.jpg')"><span class="cap"><span class="ty">Full Home · 2025</span><h3>Space for Family Life</h3><small>Lynfield · feature oak screen</small></span></a>
+    <a class="pcard rev in" data-cat="whole" href="https://addvaluerenovations.co.nz/project/the-gardens-home-renovation/" style="background-image:url('https://addvaluerenovations.co.nz/wp-content/uploads/2-1.png')"><span class="cap"><span class="ty">Full Home · 2024</span><h3>Room for Five</h3><small>The Gardens · extra bedroom + kitchen</small></span></a>
+    <a class="pcard rev in" data-cat="extension" href="https://addvaluerenovations.co.nz/project/auckland-home-renovation-bathroom-addition/" style="background-image:url('https://addvaluerenovations.co.nz/wp-content/uploads/avr-auckland-bathroom-addition-modern-2023.png')"><span class="cap"><span class="ty">Extension · 2023</span><h3>More Space, More Joy</h3><small>Rodney · bathroom addition + reno</small></span></a>
+  </div>
+</div>
+
+<section class="cta">
+  <div class="wrap">
+    <span class="overline" style="color:#fff">Your home next</span>
+    <h2>Want this standard of finish — fast, before you sell?</h2>
+    <a class="btn btn-honey" href="add-value-makeover-estimator.html">Get your instant estimate <span class="arrow">→</span></a>
+    <span class="note">takes about 30 seconds</span>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-in">
+    <div><b>Add Value Makeover</b> · An Add Value Group company</div>
+    <div style="display:flex;gap:1.2rem;flex-wrap:wrap"><a href="index.html">Home</a><a href="process.html">Process</a><a href="about.html">About</a><a href="team.html">Team</a><a href="add-value-makeover-estimator.html">Estimate</a></div>
+    <div>09 393 5658 · Newmarket, Auckland · © 2026 Add Value Group</div>
+  </div>
+</footer>
+
+<script>
+  const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}}),{threshold:.1});
+  document.querySelectorAll('.rev').forEach(el=>io.observe(el));
+  document.querySelectorAll('.filt').forEach(f=>f.addEventListener('click',()=>{
+    document.querySelectorAll('.filt').forEach(x=>x.classList.remove('on')); f.classList.add('on');
+    const c=f.dataset.cat;
+    document.querySelectorAll('.pcard').forEach(p=>p.classList.toggle('hide', c!=='all' && p.dataset.cat!==c));
+  }));
+</script>
+</body>
+</html>

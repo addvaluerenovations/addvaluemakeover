@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About Us | Add Value Makeover</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+
+<meta name="description" content="Add Value Makeover is the fast pre-sale arm of the Add Value Group — Auckland's award-winning design-and-build renovation team. Our story, our values, and why we exist.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@300;400;500;600;700&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--ink:#21384a;--ink-2:#16283a;--ink-soft:#3a5566;--cream:#fbf3e6;--cream-2:#f4e9d6;--paper:#fffaf0;--green:#2f9e7c;--green-deep:#1d7a5c;--honey:#edab43;--honey-deep:#d2902a;--coral:#e3795a;--line:rgba(33,56,74,.13);--line-light:rgba(251,243,230,.16);--disp:"Bricolage Grotesque",Georgia,serif;--sans:"Hanken Grotesk",system-ui,sans-serif;--hand:"Caveat",cursive}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--sans);background:var(--cream);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased}
+  body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.035;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 30px;position:relative;z-index:1}
+  h1,h2,h3{font-family:var(--disp);font-weight:800;line-height:1.07;letter-spacing:-.02em}
+  a{color:inherit;text-decoration:none}
+  .overline{font-weight:700;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--green-deep);display:inline-flex;align-items:center;gap:.55rem}
+  .overline::before{content:"";width:26px;height:9px;border-radius:5px;background:var(--honey)}
+  .hl{position:relative;white-space:nowrap;z-index:1}.hl::after{content:"";position:absolute;left:-.08em;right:-.08em;bottom:.06em;height:.42em;border-radius:.4em;z-index:-1;transform:rotate(-1.4deg);background:var(--honey);opacity:.5}.hl.green::after{background:var(--green);opacity:.32}
+  .btn{display:inline-flex;align-items:center;gap:.55em;font-weight:700;font-size:.97rem;padding:1.05rem 1.9rem;border-radius:50px;cursor:pointer;border:2px solid transparent;transition:.25s}
+  .btn-green{background:var(--green);color:#fff}.btn-green:hover{background:var(--green-deep);transform:translateY(-2px)}
+  .btn-honey{background:var(--honey);color:var(--ink)}.btn-honey:hover{background:var(--honey-deep);transform:translateY(-2px)}
+  .arrow{transition:transform .25s}.btn:hover .arrow{transform:translateX(4px)}
+  header.nav{position:sticky;top:0;z-index:1000;background:rgba(251,243,230,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .nav-in{display:flex;align-items:center;justify-content:space-between;height:72px;max-width:1160px;margin:0 auto;padding:0 30px}
+  .brand{display:flex;align-items:center;gap:.6rem}.brand .dot{width:30px;height:30px;border-radius:9px;background:var(--green);position:relative;flex:none}.brand .dot::after{content:"";position:absolute;inset:7px;border-radius:4px;background:var(--honey)}
+  .brand .t{font-family:var(--disp);font-size:1.3rem;font-weight:800}.brand .t span{color:var(--green-deep)}.brand .g{font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);font-weight:700;display:block;margin-top:1px}
+  .nav-links{display:flex;gap:1.7rem;align-items:center}.nav-links a{font-size:.9rem;font-weight:600;color:var(--ink-soft);transition:.2s}.nav-links a:hover,.nav-links a.on{color:var(--green-deep)}
+  .nav-cta{background:var(--ink);color:var(--cream)!important;padding:.6rem 1.2rem;border-radius:50px}.nav-cta:hover{background:var(--green)}
+  @media(max-width:960px){.nav-links a:not(.nav-cta){display:none}}
+  .phead{padding:5rem 0 2rem;position:relative;overflow:hidden}.phead::before{content:"";position:absolute;top:-120px;right:6%;width:360px;height:360px;border-radius:50%;background:radial-gradient(closest-side,rgba(47,158,124,.16),transparent 70%)}
+  .phead h1{font-size:clamp(2.6rem,5.6vw,4rem);margin:1rem 0 .8rem}.phead p{color:var(--ink-soft);font-size:1.14rem;max-width:56ch}
+  section{padding:4rem 0}
+  /* story */
+  .story-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:3rem;align-items:center}
+  .story-grid h2{font-size:clamp(1.9rem,3.8vw,2.6rem);margin-bottom:1.1rem}
+  .story-grid p{color:var(--ink-soft);margin-bottom:1rem;font-size:1.05rem}
+  .story-img{aspect-ratio:4/4.4;border-radius:22px;background-size:cover;background-position:center;box-shadow:0 28px 60px -38px rgba(33,56,74,.6)}
+  @media(max-width:840px){.story-grid{grid-template-columns:1fr;gap:2rem}.story-img{aspect-ratio:16/10}}
+  /* why */
+  .why{background:var(--ink);color:var(--cream)}
+  .why .wrap{max-width:760px;text-align:center}
+  .why h2{font-size:clamp(1.9rem,4vw,2.8rem);margin:1rem 0 1rem}.why h2 .hl::after{background:var(--honey);opacity:.45}
+  .why p{color:rgba(251,243,230,.82);font-size:1.12rem;margin-bottom:1rem}
+  /* values */
+  .values{background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .vgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.3rem;margin-top:2.4rem}
+  .vcard{background:var(--cream);border:1px solid var(--line);border-radius:18px;padding:1.8rem 1.6rem}
+  .vcard .ic{width:46px;height:46px;border-radius:12px;background:var(--green);display:flex;align-items:center;justify-content:center;margin-bottom:1rem}
+  .vcard .ic svg{width:23px;height:23px;stroke:#fff;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+  .vcard h3{font-size:1.18rem;margin-bottom:.35rem}.vcard p{color:var(--ink-soft);font-size:.94rem}
+  @media(max-width:820px){.vgrid{grid-template-columns:1fr}}
+  /* badges */
+  .creds{text-align:center}
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin:2.4rem 0}
+  .stat .n{font-family:var(--disp);font-weight:800;font-size:2.6rem;color:var(--green-deep);line-height:1}.stat .l{font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-soft);margin-top:.4rem}
+  .badges{display:flex;gap:2rem;justify-content:center;align-items:center;flex-wrap:wrap;margin-top:1rem}
+  .badges img{height:84px;width:auto;filter:saturate(1)}
+  @media(max-width:620px){.stats{grid-template-columns:1fr 1fr;gap:1.8rem}}
+  .cta{background:var(--green);color:#fff;text-align:center;padding:5rem 0;position:relative;overflow:hidden}.cta::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 80% 0,rgba(237,171,67,.28),transparent 45%)}
+  .cta h2{font-size:clamp(1.9rem,3.6vw,2.8rem);max-width:24ch;margin:.6rem auto 1.4rem;position:relative;z-index:2}.cta .btn-honey{position:relative;z-index:2}.note{font-family:var(--hand);font-size:1.4rem;color:#fff;display:block;margin-top:1rem;position:relative;z-index:2;opacity:.9}
+  footer{background:var(--ink-2);color:rgba(251,243,230,.6);padding:2.6rem 0;font-size:.86rem}.foot-in{display:flex;justify-content:space-between;gap:1.4rem;flex-wrap:wrap;align-items:center;max-width:1160px;margin:0 auto;padding:0 30px}footer b{color:var(--honey);font-family:var(--disp);font-weight:700;font-size:1.05rem}footer a{color:rgba(251,243,230,.75)}footer a:hover{color:var(--honey)}
+  .rev{opacity:0;transform:translateY(22px);transition:.7s}.rev.in{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-in">
+    <a class="brand" href="index.html"><svg class="mark" style="flex:none" width="30" height="30" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-label="Add Value Makeover"><rect x="2" y="2" width="60" height="60" rx="17" fill="#2f9e7c"/><text x="31" y="45" font-family="Bricolage Grotesque,serif" font-weight="800" font-size="38" fill="#fffaf0" text-anchor="middle">M</text><circle cx="48" cy="17" r="5" fill="#edab43"/></svg><span><span class="t">Add Value <span>Makeover</span></span><span class="g">An Add Value Group Co.</span></span></a>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="process.html">Our Process</a>
+      <a href="projects.html">Our Work</a>
+      <a href="about.html" class="on">About</a>
+      <a href="team.html">Our Team</a>
+      <a href="renovation-centre.html">Renovation Centre</a>
+      <a href="areas-we-cover.html">Areas</a>
+      <a class="nav-cta" href="add-value-makeover-estimator.html">Instant Estimate</a>
+    </nav>
+  </div>
+</header>
+
+<section class="phead">
+  <div class="wrap rev in">
+    <span class="overline">About Us</span>
+    <h1>Auckland's renovation team, with a <span class="hl green">fast lane.</span></h1>
+    <p>Add Value Makeover is the quick-turnaround arm of the Add Value Group — built for one job: getting your home looking its best and worth more, in the weeks before it goes on the market.</p>
+  </div>
+</section>
+
+<!-- STORY -->
+<section>
+  <div class="wrap story-grid">
+    <div class="rev in">
+      <span class="overline">Our story</span>
+      <h2>It started with one room.</h2>
+      <p>The Add Value Group began the way a lot of good things do — with a problem at home. Founders Simon and Joanna needed more space but didn't want to move, so Simon, a builder by trade, turned their spare room into a master suite. It worked beautifully and lifted the home's value, but the journey through design, consents and trades was stressful and slow.</p>
+      <p>That experience sparked a simple idea: renovations go wrong when no one's managing the whole thing properly. So in 2014 they built a company that does — one team handling design, costing and build under a single contract. Hundreds of Auckland homes later, that's still how Add Value works.</p>
+      <p><strong>Add Value Makeover</strong> takes that same team and points it at a specific moment: when you're about to sell. Same crew, same guarantee, same standards — just focused on speed, value and a fixed timeline.</p>
+    </div>
+    <div class="story-img rev in" style="background-image:url('https://addvaluerenovations.co.nz/wp-content/uploads/avr-mt-roskill-kitchen-waterfall-island-2025.jpg')"></div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="why">
+  <div class="wrap rev in">
+    <span class="overline" style="color:#fff">Why we exist</span>
+    <h2>Sellers don't need a renovation. They need <span class="hl">value, fast.</span></h2>
+    <p>When you're selling, you don't have months for a full reno, and you shouldn't spend new-kitchen money on a house you're about to hand over. What you need is the right work, in the right places, done quickly — so the home photographs well, shows beautifully, and sells for more than it would have tired.</p>
+    <p>That's the whole reason Add Value Makeover exists: a tight, fixed-price programme that adds value where buyers actually look, and nowhere they don't.</p>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section class="values">
+  <div class="wrap">
+    <div class="rev in" style="text-align:center;max-width:48ch;margin:0 auto"><span class="overline" style="justify-content:center">What guides us</span><h2 style="font-size:clamp(1.9rem,4vw,2.7rem);margin:1rem 0 .4rem">The values behind every job.</h2></div>
+    <div class="vgrid">
+      <div class="vcard rev in"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/><path d="M9 12l2 2 4-4"/></svg></div><h3>Integrity &amp; transparency</h3><p>Fixed prices, honest advice, and no surprises halfway through. You'll always know what's happening and what it costs.</p></div>
+      <div class="vcard rev in"><div class="ic"><svg viewBox="0 0 24 24"><path d="M20 21a8 8 0 0 0-16 0"/><circle cx="12" cy="8" r="4"/></svg></div><h3>Customer-centric</h3><p>Your sale, your timeline, your budget come first. We scope the work around what actually moves your result.</p></div>
+      <div class="vcard rev in"><div class="ic"><svg viewBox="0 0 24 24"><path d="M14 6l4 4"/><path d="M16 4l4 4-2 2-4-4z"/><path d="M14.5 7.5L6 16a2 2 0 0 0 0 3 2 2 0 0 0 3 0l8.5-8.5"/></svg></div><h3>Quality craftsmanship</h3><p>Fast doesn't mean rough. Every finish is held to the same standard as our full renovations — guaranteed.</p></div>
+      <div class="vcard rev in"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><h3>Timely delivery</h3><p>A locked schedule we actually hit, so your home is ready for photos and the market exactly when we said.</p></div>
+      <div class="vcard rev in"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="10" r="2.5"/><path d="M3 20a6 6 0 0 1 12 0M14 20a5 5 0 0 1 7-4.5"/></svg></div><h3>Respect &amp; teamwork</h3><p>One crew, one point of contact, a tidy site, and people who treat your home like it's their own.</p></div>
+      <div class="vcard rev in"><div class="ic"><svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7"/><path d="M5 10v9h14v-9"/><rect x="10" y="13" width="4" height="6"/></svg></div><h3>Adding real value</h3><p>Every dollar is aimed at your sale price — refresh what shows, leave what doesn't, and never overspend.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CREDS -->
+<section class="creds">
+  <div class="wrap rev in">
+    <span class="overline" style="justify-content:center">Backed by the group</span>
+    <h2 style="font-size:clamp(1.8rem,3.6vw,2.5rem);margin:1rem 0 .2rem">A decade of Auckland renovations behind us.</h2>
+    <div class="stats">
+      <div class="stat"><div class="n">2014</div><div class="l">Group founded</div></div>
+      <div class="stat"><div class="n">500+</div><div class="l">Homes completed</div></div>
+      <div class="stat"><div class="n">4.8★</div><div class="l">From 34 reviews</div></div>
+      <div class="stat"><div class="n">$2M</div><div class="l">Public liability</div></div>
+    </div>
+    <div class="badges">
+      <img src="https://addvaluerenovations.co.nz/wp-content/uploads/Image_20260307100103_545_46.png" alt="Registered Master Builder">
+      <img src="https://addvaluerenovations.co.nz/wp-content/uploads/Image_20250812201744-300x300.png" alt="House of the Year Gold Award 2025">
+      <img src="https://addvaluerenovations.co.nz/wp-content/uploads/Image_20260307100107_546_46.png" alt="Licensed Building Practitioner">
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap">
+    <span class="overline" style="color:#fff">Let's talk</span>
+    <h2>Thinking of selling? Let's get your place ready.</h2>
+    <a class="btn btn-honey" href="add-value-makeover-estimator.html">Get your instant estimate <span class="arrow">→</span></a>
+    <span class="note">or call 09 393 5658</span>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-in">
+    <div><b>Add Value Makeover</b> · An Add Value Group company</div>
+    <div style="display:flex;gap:1.2rem;flex-wrap:wrap"><a href="index.html">Home</a><a href="process.html">Process</a><a href="projects.html">Our Work</a><a href="team.html">Team</a><a href="add-value-makeover-estimator.html">Estimate</a></div>
+    <div>09 393 5658 · Newmarket, Auckland · © 2026 Add Value Group</div>
+  </div>
+</footer>
+
+<script>
+  const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}}),{threshold:.12});
+  document.querySelectorAll('.rev').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

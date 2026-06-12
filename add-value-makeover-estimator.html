@@ -1,0 +1,497 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Instant Estimate | Add Value Makeover</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+
+<meta name="description" content="Answer a few quick questions and get an instant estimate, PDF and timeline for a pre-sale makeover or full home renovation. Add Value Makeover — an Add Value Group company.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@300;400;500;600;700&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<style>
+  :root{
+    --ink:#21384a;--ink-2:#16283a;--ink-soft:#3a5566;
+    --cream:#fbf3e6;--cream-2:#f4e9d6;--paper:#fffaf0;
+    --green:#2f9e7c;--green-deep:#1d7a5c;--honey:#edab43;--honey-deep:#d2902a;--coral:#e3795a;
+    --line:rgba(33,56,74,.13);--line-light:rgba(251,243,230,.16);
+    --disp:"Bricolage Grotesque",Georgia,serif;--sans:"Hanken Grotesk",system-ui,sans-serif;--hand:"Caveat",cursive;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--sans);background:var(--cream);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;min-height:100vh;display:flex;flex-direction:column}
+  body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.035;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  h1,h2,h3{font-family:var(--disp);font-weight:800;line-height:1.08;letter-spacing:-.02em}
+
+  .bar{position:sticky;top:0;z-index:10;background:rgba(251,243,230,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .bar-in{max-width:760px;margin:0 auto;padding:0 24px;height:66px;display:flex;align-items:center;justify-content:space-between}
+  .brand{display:flex;align-items:center;gap:.55rem}
+  .brand .dot{width:28px;height:28px;border-radius:8px;background:var(--green);position:relative;flex:none}
+  .brand .dot::after{content:"";position:absolute;inset:6px;border-radius:4px;background:var(--honey)}
+  .brand .t{font-family:var(--disp);font-size:1.18rem;font-weight:800}
+  .brand .t span{color:var(--green-deep)}
+header.nav a{text-decoration:none}
+.brand .t{color:var(--ink)}
+.brand{text-decoration:none}
+  .bar a.call{font-weight:700;font-size:.9rem;color:var(--ink-soft)}
+  .bar a.call:hover{color:var(--green-deep)}
+
+  .progress{height:5px;background:var(--cream-2);position:sticky;top:66px;z-index:9}
+  .progress .fill{height:100%;width:0;background:linear-gradient(90deg,var(--green),var(--honey));transition:width .45s cubic-bezier(.4,0,.2,1)}
+
+  .stage{flex:1;display:flex;align-items:flex-start;justify-content:center;padding:3rem 24px 4rem;position:relative;z-index:1}
+  .card{max-width:680px;width:100%}
+  .screen{display:none;animation:fade .45s ease}
+  .screen.on{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+  .step-tag{font-weight:700;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--green-deep);display:inline-flex;align-items:center;gap:.5rem;margin-bottom:.9rem}
+  .step-tag::before{content:"";width:24px;height:8px;border-radius:5px;background:var(--honey)}
+  .q{font-size:clamp(1.8rem,4.4vw,2.7rem);margin-bottom:.5rem}
+  .qs{color:var(--ink-soft);font-size:1.08rem;margin-bottom:1.8rem;max-width:48ch}
+  .hl{position:relative;white-space:nowrap;z-index:1}
+  .hl::after{content:"";position:absolute;left:-.08em;right:-.08em;bottom:.05em;height:.4em;border-radius:.4em;z-index:-1;transform:rotate(-1.4deg);background:var(--honey);opacity:.5}
+
+  .choices{display:grid;gap:.85rem}
+  .choices.two{grid-template-columns:1fr 1fr}
+  .choice{display:flex;align-items:center;gap:1rem;text-align:left;background:var(--paper);border:2px solid var(--line);border-radius:18px;padding:1.15rem 1.3rem;cursor:pointer;transition:.2s;font-family:var(--sans);width:100%}
+  .choice:hover{border-color:var(--green);transform:translateY(-2px);box-shadow:0 16px 32px -24px rgba(33,56,74,.5)}
+  .choice.sel{border-color:var(--green);background:rgba(47,158,124,.1)}
+  .choice .ico{flex:none;width:48px;height:48px;display:flex;align-items:center;justify-content:center;background:var(--cream);border-radius:13px}
+  .choice .ico svg{width:25px;height:25px;fill:none;stroke:var(--ink);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+  .choice.sel .ico{background:rgba(47,158,124,.16)}
+  .choice.sel .ico svg{stroke:var(--green-deep)}
+  .choice .ico.muted{background:var(--cream-2)}
+  .choice .ico.muted svg{stroke:var(--ink-soft)}
+  .choice .ct{flex:1}
+  .choice .ct b{display:block;font-family:var(--disp);font-weight:700;font-size:1.12rem;color:var(--ink)}
+  .choice .ct small{color:var(--ink-soft);font-size:.9rem}
+  @media(max-width:520px){.choices.two{grid-template-columns:1fr}}
+
+  .fld{margin-bottom:1.1rem}
+  .fld label{display:block;font-weight:700;font-size:.82rem;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:.45rem}
+  .fld input{width:100%;padding:.95rem 1.1rem;border-radius:13px;border:2px solid var(--line);background:var(--paper);font-family:var(--sans);font-size:1.05rem;color:var(--ink)}
+  .fld input:focus{outline:none;border-color:var(--green)}
+
+  .nav{display:flex;gap:.8rem;margin-top:2rem;align-items:center}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:.55em;font-family:var(--sans);font-weight:700;font-size:1rem;padding:1.05rem 2rem;border-radius:50px;cursor:pointer;border:2px solid transparent;transition:.25s}
+  .btn-green{background:var(--green);color:#fff}
+  .btn-green:hover{background:var(--green-deep);transform:translateY(-2px)}
+  .btn-back{background:transparent;border-color:var(--line);color:var(--ink-soft)}
+  .btn-back:hover{border-color:var(--ink);color:var(--ink)}
+  .arrow{transition:transform .25s}.btn:hover .arrow{transform:translateX(4px)}
+  .note{font-family:var(--hand);font-size:1.4rem;color:var(--coral);transform:rotate(-3deg);display:inline-block}
+
+  .result-box{background:var(--ink);color:var(--cream);border-radius:26px;padding:2.4rem;position:relative;overflow:hidden}
+  .result-box::after{content:"";position:absolute;top:-70px;right:-70px;width:230px;height:230px;border-radius:50%;background:radial-gradient(closest-side,rgba(237,171,67,.32),transparent 70%);pointer-events:none}
+  .result-box .lab{font-weight:700;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--honey)}
+  .result-box .big{font-family:var(--disp);font-weight:800;font-size:clamp(2.2rem,6vw,3rem);line-height:1.05;margin:.5rem 0;position:relative;z-index:2}
+  .result-box .big .to{color:rgba(251,243,230,.5);font-weight:600;font-size:1.7rem}
+  .result-box .tl{display:flex;align-items:center;gap:.55rem;font-weight:600}
+  .result-box .tl b{font-family:var(--disp);color:var(--honey);font-size:1.2rem}
+  .result-box hr{border:0;border-top:1px dashed var(--line-light);margin:1.5rem 0}
+  .bd{list-style:none;font-size:.94rem}
+  .bd li{display:flex;justify-content:space-between;gap:1rem;padding:.5rem 0;color:rgba(251,243,230,.85)}
+  .bd li span:last-child{font-weight:700;color:#fff;white-space:nowrap}
+  .res-actions{display:grid;gap:.7rem;margin-top:1.6rem}
+  .res-actions .btn{width:100%}
+  .btn-honey{background:var(--honey);color:var(--ink)}
+  .btn-honey:hover{background:var(--honey-deep);transform:translateY(-2px)}
+  .sent{background:rgba(47,158,124,.18);border:1px solid rgba(47,158,124,.5);border-radius:14px;padding:.9rem 1.1rem;margin-top:1.3rem;font-weight:600;font-size:.95rem;color:#bdebd9;display:flex;gap:.6rem;align-items:flex-start}
+  .disclaimer{font-size:.78rem;color:rgba(251,243,230,.55);margin-top:1.2rem;line-height:1.5}
+
+  footer{padding:1.6rem 24px;text-align:center;font-size:.8rem;color:var(--ink-soft);position:relative;z-index:1}
+
+/* full header (matches all pages) */
+header.nav{position:sticky;top:0;z-index:1000;background:rgba(251,243,230,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:72px;max-width:1160px;margin:0 auto;padding:0 30px}
+.brand .t{font-family:var(--disp);font-size:1.3rem;font-weight:800;line-height:1}
+.brand .t span{color:var(--green-deep)}
+.brand .g{font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);font-weight:700;display:block;margin-top:1px}
+.nav-links{display:flex;gap:1.7rem;align-items:center}
+.nav-links a{font-size:.9rem;font-weight:600;color:var(--ink-soft);transition:.2s}
+.nav-links a:hover,.nav-links a.on{color:var(--green-deep)}
+.nav-cta{background:var(--ink);color:var(--cream)!important;padding:.6rem 1.2rem;border-radius:50px}
+.nav-cta:hover{background:var(--green)}
+@media(max-width:960px){.nav-links a:not(.nav-cta){display:none}}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-in">
+    <a class="brand" href="index.html"><svg class="mark" style="flex:none" width="30" height="30" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-label="Add Value Makeover"><rect x="2" y="2" width="60" height="60" rx="17" fill="#2f9e7c"/><text x="31" y="45" font-family="Bricolage Grotesque,serif" font-weight="800" font-size="38" fill="#fffaf0" text-anchor="middle">M</text><circle cx="48" cy="17" r="5" fill="#edab43"/></svg><span><span class="t">Add Value <span>Makeover</span></span><span class="g">An Add Value Group Co.</span></span></a>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="process.html">Our Process</a>
+      <a href="projects.html">Our Work</a>
+      <a href="about.html">About</a>
+      <a href="team.html">Our Team</a>
+      <a href="renovation-centre.html">Renovation Centre</a>
+      <a href="areas-we-cover.html">Areas</a>
+      <a class="nav-cta" href="add-value-makeover-estimator.html">Instant Estimate</a>
+    </nav>
+  </div>
+</header>
+<div class="progress"><div class="fill" id="fill"></div></div>
+
+<div class="stage">
+  <div class="card">
+
+    <!-- 1. TYPE -->
+    <section class="screen on" data-id="type">
+      <span class="step-tag">Let's begin</span>
+      <h2 class="q">What are you <span class="hl">planning?</span></h2>
+      <p class="qs">Pick the one that sounds most like you — you can change details as we go.</p>
+      <div class="choices">
+        <button class="choice" data-key="type" data-val="refresh"><span class="ico"><svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7"/><path d="M5 10v9h14v-9"/><rect x="10" y="13" width="4" height="6"/></svg></span><span class="ct"><b>A quick pre-sale makeover</b><small>Freshen it up fast before it goes on the market</small></span></button>
+        <button class="choice" data-key="type" data-val="full"><span class="ico"><svg viewBox="0 0 24 24"><path d="M12 3l8.5 4.5L12 12 3.5 7.5z"/><path d="M3.5 12L12 16.5 20.5 12"/><path d="M3.5 16.5L12 21l8.5-4.5"/></svg></span><span class="ct"><b>A full home renovation</b><small>A bigger transformation — new kitchen, bathrooms, layout</small></span></button>
+      </div>
+    </section>
+
+    <!-- ===== REFRESH BRANCH ===== -->
+    <section class="screen" data-id="r_kitchen">
+      <span class="step-tag">Quick Refresh</span>
+      <h2 class="q">Want the <span class="hl">kitchen</span> refreshed?</h2>
+      <p class="qs">We resurface and respray your existing cabinets — the new-kitchen look without ripping it out.</p>
+      <div class="choices two">
+        <button class="choice" data-key="kitchen" data-val="small"><span class="ico"><svg viewBox="0 0 24 24"><rect x="3.5" y="4.5" width="17" height="15" rx="2"/><line x1="3.5" y1="10" x2="20.5" y2="10"/><circle cx="7" cy="7.2" r="1"/><circle cx="11" cy="7.2" r="1"/><rect x="8" y="13" width="8" height="4" rx="1"/></svg></span><span class="ct"><b>Compact</b><small>galley / small · 4–5 days</small></span></button>
+        <button class="choice" data-key="kitchen" data-val="medium"><span class="ico"><svg viewBox="0 0 24 24"><rect x="3.5" y="4.5" width="17" height="15" rx="2"/><line x1="3.5" y1="10" x2="20.5" y2="10"/><circle cx="7" cy="7.2" r="1"/><circle cx="11" cy="7.2" r="1"/><rect x="8" y="13" width="8" height="4" rx="1"/></svg></span><span class="ct"><b>Medium</b><small>standard · 5–6 days</small></span></button>
+        <button class="choice" data-key="kitchen" data-val="large"><span class="ico"><svg viewBox="0 0 24 24"><rect x="3.5" y="4.5" width="17" height="15" rx="2"/><line x1="3.5" y1="10" x2="20.5" y2="10"/><circle cx="7" cy="7.2" r="1"/><circle cx="11" cy="7.2" r="1"/><rect x="8" y="13" width="8" height="4" rx="1"/></svg></span><span class="ct"><b>Large</b><small>open-plan · 6–8 days</small></span></button>
+        <button class="choice" data-key="kitchen" data-val="none"><span class="ico muted"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><line x1="8" y1="12" x2="16" y2="12"/></svg></span><span class="ct"><b>Leave as is</b><small>not this time</small></span></button>
+      </div>
+    </section>
+
+    <section class="screen" data-id="r_bathroom">
+      <span class="step-tag">Quick Refresh</span>
+      <h2 class="q">And the <span class="hl">bathroom?</span></h2>
+      <p class="qs">Respray the vanity, re-seal, regrout, refresh tiles and swap tired fixtures.</p>
+      <div class="choices two">
+        <button class="choice" data-key="bathroom" data-val="one_small"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 13h16v2a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4z"/><path d="M6 13V7a2 2 0 0 1 4 0"/><line x1="6" y1="19" x2="6" y2="21"/><line x1="18" y1="19" x2="18" y2="21"/></svg></span><span class="ct"><b>1 small</b><small>3–4 days</small></span></button>
+        <button class="choice" data-key="bathroom" data-val="one_med"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 13h16v2a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4z"/><path d="M6 13V7a2 2 0 0 1 4 0"/><line x1="6" y1="19" x2="6" y2="21"/><line x1="18" y1="19" x2="18" y2="21"/></svg></span><span class="ct"><b>1 standard</b><small>4–5 days</small></span></button>
+        <button class="choice" data-key="bathroom" data-val="two"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 13h16v2a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4z"/><path d="M6 13V7a2 2 0 0 1 4 0"/><line x1="6" y1="19" x2="6" y2="21"/><line x1="18" y1="19" x2="18" y2="21"/></svg></span><span class="ct"><b>2 bathrooms</b><small>7–8 days</small></span></button>
+        <button class="choice" data-key="bathroom" data-val="none"><span class="ico muted"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><line x1="8" y1="12" x2="16" y2="12"/></svg></span><span class="ct"><b>Leave as is</b><small>not this time</small></span></button>
+      </div>
+    </section>
+
+    <section class="screen" data-id="r_interior">
+      <span class="step-tag">Quick Refresh</span>
+      <h2 class="q">Repaint <span class="hl">inside?</span></h2>
+      <p class="qs">Walls, ceilings, trim and doors in a clean, buyer-friendly palette. How big is the house?</p>
+      <div class="choices two">
+        <button class="choice" data-key="interior" data-val="b2"><span class="ico"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="12" height="6" rx="1"/><path d="M16 7h3a1.5 1.5 0 0 1 1.5 1.5V11a1.5 1.5 0 0 1-1.5 1.5h-7"/><path d="M11.5 12.5V16"/><rect x="9.5" y="16" width="4" height="4.5" rx="1"/></svg></span><span class="ct"><b>Up to 2 bedrooms</b><small>≈ 4 days</small></span></button>
+        <button class="choice" data-key="interior" data-val="b3"><span class="ico"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="12" height="6" rx="1"/><path d="M16 7h3a1.5 1.5 0 0 1 1.5 1.5V11a1.5 1.5 0 0 1-1.5 1.5h-7"/><path d="M11.5 12.5V16"/><rect x="9.5" y="16" width="4" height="4.5" rx="1"/></svg></span><span class="ct"><b>3 bedrooms</b><small>≈ 5 days</small></span></button>
+        <button class="choice" data-key="interior" data-val="b4"><span class="ico"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="12" height="6" rx="1"/><path d="M16 7h3a1.5 1.5 0 0 1 1.5 1.5V11a1.5 1.5 0 0 1-1.5 1.5h-7"/><path d="M11.5 12.5V16"/><rect x="9.5" y="16" width="4" height="4.5" rx="1"/></svg></span><span class="ct"><b>4 bedrooms</b><small>≈ 6–7 days</small></span></button>
+        <button class="choice" data-key="interior" data-val="b5"><span class="ico"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="12" height="6" rx="1"/><path d="M16 7h3a1.5 1.5 0 0 1 1.5 1.5V11a1.5 1.5 0 0 1-1.5 1.5h-7"/><path d="M11.5 12.5V16"/><rect x="9.5" y="16" width="4" height="4.5" rx="1"/></svg></span><span class="ct"><b>5 bedrooms +</b><small>≈ 7–9 days</small></span></button>
+        <button class="choice" data-key="interior" data-val="none"><span class="ico muted"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><line x1="8" y1="12" x2="16" y2="12"/></svg></span><span class="ct"><b>Leave as is</b><small>not this time</small></span></button>
+      </div>
+    </section>
+
+    <section class="screen" data-id="r_exterior">
+      <span class="step-tag">Quick Refresh</span>
+      <h2 class="q">Repaint the <span class="hl">outside?</span></h2>
+      <p class="qs">Weatherboards or render, joinery, and the all-important front door.</p>
+      <div class="choices two">
+        <button class="choice" data-key="exterior" data-val="ss"><span class="ico"><svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7"/><path d="M5 10v9h14v-9"/><rect x="10" y="13" width="4" height="6"/></svg></span><span class="ct"><b>Single storey · small</b><small>≈ 5 days</small></span></button>
+        <button class="choice" data-key="exterior" data-val="sl"><span class="ico"><svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7"/><path d="M5 10v9h14v-9"/><rect x="10" y="13" width="4" height="6"/></svg></span><span class="ct"><b>Single storey · large</b><small>≈ 6–8 days</small></span></button>
+        <button class="choice" data-key="exterior" data-val="dbl"><span class="ico"><svg viewBox="0 0 24 24"><path d="M3 10l9-6 9 6"/><path d="M5 9v11h14V9"/><line x1="5" y1="14" x2="19" y2="14"/><rect x="10" y="15" width="4" height="5"/></svg></span><span class="ct"><b>Double storey</b><small>≈ 8–12 days</small></span></button>
+        <button class="choice" data-key="exterior" data-val="none"><span class="ico muted"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><line x1="8" y1="12" x2="16" y2="12"/></svg></span><span class="ct"><b>Leave as is</b><small>not this time</small></span></button>
+      </div>
+    </section>
+
+    <section class="screen" data-id="r_repairs">
+      <span class="step-tag">Quick Refresh</span>
+      <h2 class="q">Any <span class="hl">repairs</span> needed?</h2>
+      <p class="qs">Patching, leaks, rot, sticky doors — the stuff that puts buyers off. Be honest, it helps the estimate.</p>
+      <div class="choices two">
+        <button class="choice" data-key="repairs" data-val="light"><span class="ico"><svg viewBox="0 0 24 24"><path d="M14 6l4 4"/><path d="M16 4l4 4-2 2-4-4z"/><path d="M14.5 7.5L6 16a2 2 0 0 0 0 3 2 2 0 0 0 3 0l8.5-8.5"/></svg></span><span class="ct"><b>Light</b><small>patch &amp; tidy</small></span></button>
+        <button class="choice" data-key="repairs" data-val="moderate"><span class="ico"><svg viewBox="0 0 24 24"><path d="M14 6l4 4"/><path d="M16 4l4 4-2 2-4-4z"/><path d="M14.5 7.5L6 16a2 2 0 0 0 0 3 2 2 0 0 0 3 0l8.5-8.5"/></svg></span><span class="ct"><b>Moderate</b><small>a few fixes</small></span></button>
+        <button class="choice" data-key="repairs" data-val="heavy"><span class="ico"><svg viewBox="0 0 24 24"><path d="M14 6l4 4"/><path d="M16 4l4 4-2 2-4-4z"/><path d="M14.5 7.5L6 16a2 2 0 0 0 0 3 2 2 0 0 0 3 0l8.5-8.5"/></svg></span><span class="ct"><b>Heavy</b><small>lots to do</small></span></button>
+        <button class="choice" data-key="repairs" data-val="none"><span class="ico muted"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M8.5 12.2l2.3 2.3 4.7-4.8"/></svg></span><span class="ct"><b>None needed</b><small>all sound</small></span></button>
+      </div>
+    </section>
+
+    <!-- ===== FULL RENO BRANCH ===== -->
+    <section class="screen" data-id="f_size">
+      <span class="step-tag">Full Renovation</span>
+      <h2 class="q">How <span class="hl">big</span> is the area?</h2>
+      <p class="qs">Roughly how much floor space are we renovating? A ballpark is fine.</p>
+      <div class="choices two">
+        <button class="choice" data-key="size" data-val="80"><span class="ico"><svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7"/><path d="M5 10v9h14v-9"/><rect x="10" y="13" width="4" height="6"/></svg></span><span class="ct"><b>Under 100 m²</b><small>apartment / small home</small></span></button>
+        <button class="choice" data-key="size" data-val="125"><span class="ico"><svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7"/><path d="M5 10v9h14v-9"/><rect x="10" y="13" width="4" height="6"/></svg></span><span class="ct"><b>100–150 m²</b><small>typical 3-bed home</small></span></button>
+        <button class="choice" data-key="size" data-val="200"><span class="ico"><svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7"/><path d="M5 10v9h14v-9"/><rect x="10" y="13" width="4" height="6"/></svg></span><span class="ct"><b>150–250 m²</b><small>larger family home</small></span></button>
+        <button class="choice" data-key="size" data-val="300"><span class="ico"><svg viewBox="0 0 24 24"><path d="M3 10l9-6 9 6"/><path d="M5 9v11h14V9"/><line x1="5" y1="14" x2="19" y2="14"/><rect x="10" y="15" width="4" height="5"/></svg></span><span class="ct"><b>250 m² +</b><small>big home</small></span></button>
+      </div>
+    </section>
+
+    <section class="screen" data-id="f_level">
+      <span class="step-tag">Full Renovation</span>
+      <h2 class="q">How <span class="hl">far</span> do you want to go?</h2>
+      <p class="qs">From a smart cosmetic update to a high-end transformation.</p>
+      <div class="choices">
+        <button class="choice" data-key="level" data-val="cosmetic"><span class="ico"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="12" height="6" rx="1"/><path d="M16 7h3a1.5 1.5 0 0 1 1.5 1.5V11a1.5 1.5 0 0 1-1.5 1.5h-7"/><path d="M11.5 12.5V16"/><rect x="9.5" y="16" width="4" height="4.5" rx="1"/></svg></span><span class="ct"><b>Cosmetic refresh</b><small>Paint, floors, surfaces — best value</small></span></button>
+        <button class="choice" data-key="level" data-val="standard"><span class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="9" y1="10" x2="9" y2="20"/><line x1="15" y1="4" x2="15" y2="10"/></svg></span><span class="ct"><b>Standard renovation</b><small>New kitchen &amp; bathrooms, layout tweaks</small></span></button>
+        <button class="choice" data-key="level" data-val="premium"><span class="ico"><svg viewBox="0 0 24 24"><path d="M5 9l3-4h8l3 4-7 11z"/><path d="M5 9h14"/><path d="M10 5l-1 4 3 11 3-11-1-4"/></svg></span><span class="ct"><b>Premium renovation</b><small>High-end fit-out, structural changes</small></span></button>
+      </div>
+    </section>
+
+    <section class="screen" data-id="f_kitchen">
+      <span class="step-tag">Full Renovation</span>
+      <h2 class="q">Brand-new <span class="hl">kitchen?</span></h2>
+      <p class="qs">A full replacement, on top of the base renovation.</p>
+      <div class="choices two">
+        <button class="choice" data-key="fkitchen" data-val="yes"><span class="ico"><svg viewBox="0 0 24 24"><rect x="3.5" y="4.5" width="17" height="15" rx="2"/><line x1="3.5" y1="10" x2="20.5" y2="10"/><circle cx="7" cy="7.2" r="1"/><circle cx="11" cy="7.2" r="1"/><rect x="8" y="13" width="8" height="4" rx="1"/></svg></span><span class="ct"><b>Yes</b><small>brand-new kitchen</small></span></button>
+        <button class="choice" data-key="fkitchen" data-val="no"><span class="ico muted"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><line x1="8" y1="12" x2="16" y2="12"/></svg></span><span class="ct"><b>No</b><small>refresh existing</small></span></button>
+      </div>
+    </section>
+
+    <section class="screen" data-id="f_baths">
+      <span class="step-tag">Full Renovation</span>
+      <h2 class="q">How many <span class="hl">new bathrooms?</span></h2>
+      <p class="qs">Fully replaced, not just refreshed.</p>
+      <div class="choices two">
+        <button class="choice" data-key="fbaths" data-val="1"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 13h16v2a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4z"/><path d="M6 13V7a2 2 0 0 1 4 0"/><line x1="6" y1="19" x2="6" y2="21"/><line x1="18" y1="19" x2="18" y2="21"/></svg></span><span class="ct"><b>1 bathroom</b></span></button>
+        <button class="choice" data-key="fbaths" data-val="2"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 13h16v2a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4z"/><path d="M6 13V7a2 2 0 0 1 4 0"/><line x1="6" y1="19" x2="6" y2="21"/><line x1="18" y1="19" x2="18" y2="21"/></svg></span><span class="ct"><b>2 bathrooms</b></span></button>
+        <button class="choice" data-key="fbaths" data-val="3"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 13h16v2a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4z"/><path d="M6 13V7a2 2 0 0 1 4 0"/><line x1="6" y1="19" x2="6" y2="21"/><line x1="18" y1="19" x2="18" y2="21"/></svg></span><span class="ct"><b>3 +</b></span></button>
+        <button class="choice" data-key="fbaths" data-val="0"><span class="ico muted"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><line x1="8" y1="12" x2="16" y2="12"/></svg></span><span class="ct"><b>None</b><small>keep existing</small></span></button>
+      </div>
+    </section>
+
+    <section class="screen" data-id="f_ext">
+      <span class="step-tag">Full Renovation</span>
+      <h2 class="q">Adding an <span class="hl">extension?</span></h2>
+      <p class="qs">Extra footprint — bumping out or adding on.</p>
+      <div class="choices two">
+        <button class="choice" data-key="ext" data-val="20"><span class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg></span><span class="ct"><b>Small</b><small>≈ 20 m²</small></span></button>
+        <button class="choice" data-key="ext" data-val="40"><span class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg></span><span class="ct"><b>Medium</b><small>≈ 40 m²</small></span></button>
+        <button class="choice" data-key="ext" data-val="70"><span class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg></span><span class="ct"><b>Large</b><small>≈ 70 m²</small></span></button>
+        <button class="choice" data-key="ext" data-val="0"><span class="ico muted"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><line x1="8" y1="12" x2="16" y2="12"/></svg></span><span class="ct"><b>No extension</b></span></button>
+      </div>
+    </section>
+
+    <!-- ===== COMMON: DETAILS ===== -->
+    <section class="screen" data-id="details">
+      <span class="step-tag">Almost there</span>
+      <h2 class="q">Where shall we <span class="hl">send it?</span></h2>
+      <p class="qs">Pop in your details and we'll email your estimate as a PDF, then arrange a free walk-through to lock in a fixed price.</p>
+      <div class="fld"><label for="iname">Your name</label><input id="iname" placeholder="First and last name"></div>
+      <div class="fld"><label for="iemail">Email</label><input id="iemail" type="email" placeholder="you@email.com"></div>
+      <div class="fld"><label for="iphone">Phone</label><input id="iphone" type="tel" placeholder="Best number to reach you"></div>
+      <div class="fld"><label for="iaddr">Property address</label><input id="iaddr" placeholder="Street, suburb"></div>
+      <div class="fld"><label for="ilist">When would you like to list? (optional)</label><input id="ilist" placeholder="e.g. early next month"></div>
+      <div class="nav">
+        <button class="btn btn-back" id="dBack">← Back</button>
+        <button class="btn btn-green" id="dNext">See my estimate <span class="arrow">→</span></button>
+      </div>
+      <p id="dErr" style="color:var(--coral);font-weight:600;margin-top:.8rem;display:none">Please add your name and a valid email so we can send your PDF.</p>
+    </section>
+
+    <!-- ===== RESULT ===== -->
+    <section class="screen" data-id="result">
+      <span class="step-tag">Your estimate</span>
+      <h2 class="q" style="margin-bottom:1.3rem">Here's your <span class="hl">ballpark.</span></h2>
+      <div class="result-box">
+        <span class="lab" id="rLab">Quick refresh estimate</span>
+        <div class="big"><span id="rLo">$0</span> <span class="to">–</span> <span id="rHi">$0</span></div>
+        <div class="tl"><span>Timeline:</span> <b id="rTime">—</b></div>
+        <hr>
+        <ul class="bd" id="rBd"></ul>
+        <div class="res-actions">
+          <button class="btn btn-honey" id="rPdf">Download my PDF estimate</button>
+          <button class="btn btn-green" id="rBook">Book my free walk-through <span class="arrow">→</span></button>
+        </div>
+        <div class="sent" id="rSent" style="display:none"><span id="rSentTxt">A copy is on its way to your inbox.</span></div>
+        <p class="disclaimer">Indicative only — a ballpark for Auckland in 2026 based on what you told us. Final price depends on condition, access and finish, and is confirmed in writing after a free on-site walk-through.</p>
+      </div>
+      <div class="nav"><button class="btn btn-back" id="rRestart">↺ Start again</button> <span class="note">no obligation!</span></div>
+    </section>
+
+  </div>
+</div>
+
+<footer>Add Value Makeover · An Add Value Group company · 110 Carlton Gore Road, Newmarket, Auckland · 09 393 5658</footer>
+
+<script>
+/* ===== CONFIG ===== */
+const WEBHOOK_URL = ""; // paste your Apps Script /exec webhook URL to turn on owner email + Notion lead
+
+/* ===== PRICING [low, high, days] ===== */
+const REFRESH={
+  kitchen:{none:[0,0,0],small:[3500,5000,5],medium:[5000,7500,6],large:[7500,11000,8]},
+  bathroom:{none:[0,0,0],one_small:[3000,4500,4],one_med:[4500,6500,5],two:[7000,11000,8]},
+  interior:{none:[0,0,0],b2:[4000,6000,4],b3:[6000,8500,5],b4:[8500,12000,7],b5:[12000,16000,9]},
+  exterior:{none:[0,0,0],ss:[6000,9000,5],sl:[9000,14000,7],dbl:[12000,20000,11]},
+  repairs:{none:[0,0,0],light:[1500,3000,3],moderate:[3000,6000,5],heavy:[6000,10000,8]}
+};
+const LBL={
+  kitchen:{small:"Kitchen refresh — compact",medium:"Kitchen refresh — medium",large:"Kitchen refresh — large"},
+  bathroom:{one_small:"Bathroom refresh — 1 small",one_med:"Bathroom refresh — 1 standard",two:"Bathroom refresh — 2"},
+  interior:{b2:"Interior repaint — to 2 bed",b3:"Interior repaint — 3 bed",b4:"Interior repaint — 4 bed",b5:"Interior repaint — 5 bed+"},
+  exterior:{ss:"Exterior repaint — single, small",sl:"Exterior repaint — single, large",dbl:"Exterior repaint — double storey"},
+  repairs:{light:"Repairs & make-good — light",moderate:"Repairs & make-good — moderate",heavy:"Repairs & make-good — heavy"}
+};
+const LEVEL={cosmetic:[900,1400,0.5],standard:[1800,2800,1.0],premium:[3000,4500,1.4]};
+const LEVEL_LBL={cosmetic:"Cosmetic refresh",standard:"Standard renovation",premium:"Premium renovation"};
+
+/* ===== STATE & FLOW ===== */
+const REFRESH_FLOW=["type","r_kitchen","r_bathroom","r_interior","r_exterior","r_repairs","details","result"];
+const FULL_FLOW=["type","f_size","f_level","f_kitchen","f_baths","f_ext","details","result"];
+let flow=REFRESH_FLOW, idx=0;
+const S={type:null,kitchen:"none",bathroom:"none",interior:"none",exterior:"none",repairs:"none",
+         size:"125",level:"cosmetic",fkitchen:"no",fbaths:"0",ext:"0",
+         name:"",email:"",phone:"",addr:"",list:""};
+
+const $=s=>document.querySelector(s);
+const screens={};
+document.querySelectorAll('.screen').forEach(s=>screens[s.dataset.id]=s);
+const fmt=n=>"$"+Math.round(n).toLocaleString();
+
+function show(i){
+  idx=i;
+  const id=flow[i];
+  Object.values(screens).forEach(s=>s.classList.remove('on'));
+  screens[id].classList.add('on');
+  $('#fill').style.width=(i/(flow.length-1)*100)+"%";
+  window.scrollTo({top:0,behavior:'smooth'});
+  if(id==='result') renderResult();
+}
+
+document.querySelectorAll('.choice').forEach(c=>{
+  c.addEventListener('click',()=>{
+    const k=c.dataset.key, v=c.dataset.val;
+    S[k]=v;
+    const grp=c.closest('.choices');
+    grp.querySelectorAll('.choice').forEach(x=>x.classList.remove('sel'));
+    c.classList.add('sel');
+    if(k==='type'){ flow = v==='full'?FULL_FLOW:REFRESH_FLOW; }
+    setTimeout(()=>show(idx+1),230);
+  });
+});
+
+$('#dBack').onclick=()=>show(idx-1);
+$('#dNext').onclick=()=>{
+  S.name=$('#iname').value.trim(); S.email=$('#iemail').value.trim();
+  S.phone=$('#iphone').value.trim(); S.addr=$('#iaddr').value.trim(); S.list=$('#ilist').value.trim();
+  const okEmail=/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(S.email);
+  if(!S.name||!okEmail){ $('#dErr').style.display='block'; return; }
+  $('#dErr').style.display='none';
+  show(idx+1);
+};
+$('#rRestart').onclick=()=>{location.reload()};
+
+/* ===== COMPUTE ===== */
+function compute(){
+  let lo=0,hi=0,days=0; const items=[];
+  if(S.type==='full'){
+    const a=+S.size, lv=LEVEL[S.level];
+    let blo=a*lv[0], bhi=a*lv[1]; lo+=blo;hi+=bhi;days+=a*lv[2];
+    items.push([LEVEL_LBL[S.level]+" — ~"+a+" m²",blo,bhi]);
+    if(S.fkitchen==='yes'){lo+=25000;hi+=40000;days+=10;items.push(["Brand-new kitchen",25000,40000]);}
+    const nb=+S.fbaths; if(nb>0){lo+=18000*nb;hi+=28000*nb;days+=8*nb;items.push([nb+"× new bathroom",18000*nb,28000*nb]);}
+    const ea=+S.ext; if(ea>0){lo+=ea*3500;hi+=ea*5500;days+=ea*0.8;items.push(["Extension — ~"+ea+" m²",ea*3500,ea*5500]);}
+    const wLo=Math.max(3,Math.round(days/5*0.85)), wHi=Math.round(days/5*1.2);
+    return {lo,hi,items,time:"≈ "+wLo+"–"+wHi+" weeks",type:"Full home renovation"};
+  } else {
+    for(const k of ['kitchen','bathroom','interior','exterior','repairs']){
+      const v=S[k]; if(v!=='none'){ const d=REFRESH[k][v]; lo+=d[0];hi+=d[1];days+=d[2]; items.push([LBL[k][v],d[0],d[1]]); }
+    }
+    let time = days<=0?"—":(days<=5&&items.length<=1)?(days+" working days"):
+      ("≈ "+Math.min(4,Math.max(1,Math.ceil(days/5)))+" week"+(Math.ceil(days/5)>1?"s":"")+", phased");
+    return {lo,hi,items,time,type:"Quick pre-sale makeover"};
+  }
+}
+
+let EST=null;
+function renderResult(){
+  EST=compute();
+  $('#rLab').textContent = EST.type==='Full home renovation'?"Full renovation estimate":"Quick refresh estimate";
+  $('#rLo').textContent=fmt(EST.lo); $('#rHi').textContent=fmt(EST.hi);
+  $('#rTime').textContent=EST.time;
+  $('#rBd').innerHTML = EST.items.length? EST.items.map(i=>"<li><span>"+i[0]+"</span><span>"+fmt(i[1])+"–"+fmt(i[2])+"</span></li>").join('')
+    : '<li><span>Nothing selected</span><span>$0</span></li>';
+  sendEstimate();
+}
+
+/* ===== PDF ===== */
+function buildPDF(){
+  const { jsPDF }=window.jspdf;
+  const doc=new jsPDF({unit:'pt',format:'a4'}); const W=595;
+  const ink=[33,56,74],green=[47,158,124],honey=[237,171,67],cream=[251,243,230],soft=[90,110,124];
+  doc.setFillColor(ink[0],ink[1],ink[2]); doc.rect(0,0,W,96,'F');
+  doc.setFillColor(green[0],green[1],green[2]); doc.rect(40,34,14,14,'F');
+  doc.setFillColor(honey[0],honey[1],honey[2]); doc.rect(44,38,6,6,'F');
+  doc.setTextColor(cream[0],cream[1],cream[2]); doc.setFont('helvetica','bold'); doc.setFontSize(20); doc.text("Add Value Makeover",64,46);
+  doc.setFontSize(8); doc.setTextColor(honey[0],honey[1],honey[2]); doc.text("AN ADD VALUE GROUP COMPANY",64,60);
+  doc.setTextColor(cream[0],cream[1],cream[2]); doc.setFontSize(8); doc.setFont('helvetica','normal');
+  doc.text("09 393 5658   |   info@addvaluerenovations.co.nz   |   Newmarket, Auckland",64,74);
+  let y=132;
+  doc.setTextColor(ink[0],ink[1],ink[2]); doc.setFont('helvetica','bold'); doc.setFontSize(22); doc.text("Your Instant Estimate",40,y); y+=26;
+  doc.setFont('helvetica','normal'); doc.setFontSize(10); doc.setTextColor(soft[0],soft[1],soft[2]);
+  const today=new Date().toLocaleDateString('en-NZ',{day:'numeric',month:'long',year:'numeric'});
+  doc.text("Prepared "+today+"  for  "+(S.name||"—"),40,y); y+=15;
+  if(S.addr){doc.text("Property: "+S.addr,40,y); y+=15;}
+  doc.text("Project type: "+EST.type,40,y); y+=24;
+  doc.setDrawColor(green[0],green[1],green[2]); doc.setLineWidth(2); doc.line(40,y,W-40,y); y+=8;
+  doc.setFont('helvetica','bold'); doc.setFontSize(9); doc.setTextColor(soft[0],soft[1],soft[2]);
+  doc.text("WHAT'S INCLUDED",40,y); doc.text("ESTIMATE",W-40,y,{align:'right'}); y+=6;
+  doc.setDrawColor(220,212,196); doc.setLineWidth(1);
+  doc.setFont('helvetica','normal'); doc.setFontSize(11); doc.setTextColor(ink[0],ink[1],ink[2]);
+  EST.items.forEach(function(it){ y+=20; doc.line(40,y-14,W-40,y-14);
+    doc.text(String(it[0]),40,y); doc.text(fmt(it[1])+" – "+fmt(it[2]),W-40,y,{align:'right'}); });
+  y+=8; doc.line(40,y,W-40,y); y+=26;
+  doc.setFillColor(ink[0],ink[1],ink[2]); doc.roundedRect(40,y-18,W-80,84,10,10,'F');
+  doc.setTextColor(honey[0],honey[1],honey[2]); doc.setFont('helvetica','bold'); doc.setFontSize(9); doc.text("TOTAL ESTIMATE RANGE",58,y+2);
+  doc.setTextColor(cream[0],cream[1],cream[2]); doc.setFontSize(22); doc.text(fmt(EST.lo)+"  –  "+fmt(EST.hi),58,y+30);
+  doc.setFontSize(11); doc.text("Timeline:  "+EST.time,58,y+52);
+  y+=104;
+  doc.setTextColor(soft[0],soft[1],soft[2]); doc.setFont('helvetica','italic'); doc.setFontSize(9);
+  const dis="This is an indicative ballpark for Auckland (2026) based on the details provided. Your final, fixed price is confirmed in writing after a free on-site walk-through. No obligation.";
+  doc.text(doc.splitTextToSize(dis,W-80),40,y); y+=46;
+  doc.setFillColor(green[0],green[1],green[2]); doc.roundedRect(40,y,W-80,52,10,10,'F');
+  doc.setTextColor(255,255,255); doc.setFont('helvetica','bold'); doc.setFontSize(13);
+  doc.text("Ready for a fixed quote? Book a free walk-through.",W/2,y+24,{align:'center'});
+  doc.setFontSize(11); doc.setFont('helvetica','normal');
+  doc.text("Call 09 393 5658  or  info@addvaluerenovations.co.nz",W/2,y+41,{align:'center'});
+  return doc;
+}
+
+$('#rPdf').onclick=function(){ buildPDF().save("Add-Value-Refresh-Estimate.pdf"); };
+$('#rBook').onclick=function(){
+  const lines=EST.items.map(function(i){return "• "+i[0]+": "+fmt(i[1])+"–"+fmt(i[2]);}).join('%0D%0A')||"(none)";
+  const body="Hi Add Value Makeover,%0D%0A%0D%0AI'd like to book a free walk-through.%0D%0A%0D%0AName: "+encodeURIComponent(S.name)+"%0D%0APhone: "+encodeURIComponent(S.phone)+"%0D%0AProperty: "+encodeURIComponent(S.addr)+"%0D%0AList date: "+encodeURIComponent(S.list||'—')+"%0D%0A%0D%0AProject: "+encodeURIComponent(EST.type)+"%0D%0A"+lines+"%0D%0AEstimate: "+fmt(EST.lo)+"–"+fmt(EST.hi)+"%0D%0ATimeline: "+encodeURIComponent(EST.time);
+  window.location.href="mailto:info@addvaluerenovations.co.nz?subject=Free%20walk-through%20request%20-%20"+encodeURIComponent(S.name)+"&body="+body;
+};
+
+/* ===== EMAIL TO OWNER (via webhook) ===== */
+async function sendEstimate(){
+  const sent=$('#rSent'), txt=$('#rSentTxt');
+  if(!WEBHOOK_URL){
+    sent.style.display='flex';
+    txt.innerHTML="Tap <b>Download my PDF</b> to save your estimate. (Auto-email to your inbox switches on once the webhook is connected.)";
+    return;
+  }
+  try{
+    const pdf=buildPDF().output('datauristring');
+    const payload={
+      source:"Add Value Makeover — Instant Estimator",
+      name:S.name,email:S.email,phone:S.phone,address:S.addr,listDate:S.list,
+      projectType:EST.type, estimateLow:EST.lo, estimateHigh:EST.hi, timeline:EST.time,
+      lineItems:EST.items.map(function(i){return {item:i[0],low:i[1],high:i[2]};}),
+      pdfBase64:pdf
+    };
+    await fetch(WEBHOOK_URL,{method:'POST',body:JSON.stringify(payload)});
+    sent.style.display='flex';
+    txt.innerHTML="A copy of your estimate is on its way to <b>"+S.email+"</b>. We'll be in touch to arrange your walk-through.";
+  }catch(e){
+    sent.style.display='flex';
+    txt.innerHTML="Your PDF is ready below — tap <b>Download my PDF</b> to save it. (We couldn't auto-email just now.)";
+  }
+}
+
+show(0);
+</script>
+</body>
+</html>

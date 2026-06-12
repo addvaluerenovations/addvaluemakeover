@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Our Team | Add Value Makeover</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+
+<meta name="description" content="Meet the Add Value team behind your refresh — director, painter, designer, quantity surveyor, site manager and architectural designer. One crew, one standard.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@300;400;500;600;700&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--ink:#21384a;--ink-2:#16283a;--ink-soft:#3a5566;--cream:#fbf3e6;--cream-2:#f4e9d6;--paper:#fffaf0;--green:#2f9e7c;--green-deep:#1d7a5c;--honey:#edab43;--honey-deep:#d2902a;--coral:#e3795a;--line:rgba(33,56,74,.13);--line-light:rgba(251,243,230,.16);--disp:"Bricolage Grotesque",Georgia,serif;--sans:"Hanken Grotesk",system-ui,sans-serif;--hand:"Caveat",cursive}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--sans);background:var(--cream);color:var(--ink);line-height:1.62;-webkit-font-smoothing:antialiased}
+  body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.035;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 30px;position:relative;z-index:1}
+  h1,h2,h3{font-family:var(--disp);font-weight:800;line-height:1.07;letter-spacing:-.02em}
+  a{color:inherit;text-decoration:none}
+  .overline{font-weight:700;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--green-deep);display:inline-flex;align-items:center;gap:.55rem}
+  .overline::before{content:"";width:26px;height:9px;border-radius:5px;background:var(--honey)}
+  .hl{position:relative;white-space:nowrap;z-index:1}.hl::after{content:"";position:absolute;left:-.08em;right:-.08em;bottom:.06em;height:.42em;border-radius:.4em;z-index:-1;transform:rotate(-1.4deg);background:var(--honey);opacity:.5}.hl.green::after{background:var(--green);opacity:.32}
+  .btn{display:inline-flex;align-items:center;gap:.55em;font-weight:700;font-size:.97rem;padding:1.05rem 1.9rem;border-radius:50px;cursor:pointer;border:2px solid transparent;transition:.25s}
+  .btn-honey{background:var(--honey);color:var(--ink)}.btn-honey:hover{background:var(--honey-deep);transform:translateY(-2px)}
+  .arrow{transition:transform .25s}.btn:hover .arrow{transform:translateX(4px)}
+  header.nav{position:sticky;top:0;z-index:1000;background:rgba(251,243,230,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .nav-in{display:flex;align-items:center;justify-content:space-between;height:72px;max-width:1160px;margin:0 auto;padding:0 30px}
+  .brand{display:flex;align-items:center;gap:.6rem}.brand .dot{width:30px;height:30px;border-radius:9px;background:var(--green);position:relative;flex:none}.brand .dot::after{content:"";position:absolute;inset:7px;border-radius:4px;background:var(--honey)}
+  .brand .t{font-family:var(--disp);font-size:1.3rem;font-weight:800}.brand .t span{color:var(--green-deep)}.brand .g{font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);font-weight:700;display:block;margin-top:1px}
+  .nav-links{display:flex;gap:1.7rem;align-items:center}.nav-links a{font-size:.9rem;font-weight:600;color:var(--ink-soft);transition:.2s}.nav-links a:hover,.nav-links a.on{color:var(--green-deep)}
+  .nav-cta{background:var(--ink);color:var(--cream)!important;padding:.6rem 1.2rem;border-radius:50px}.nav-cta:hover{background:var(--green)}
+  @media(max-width:960px){.nav-links a:not(.nav-cta){display:none}}
+  .phead{padding:5rem 0 2.5rem;position:relative;overflow:hidden}.phead::before{content:"";position:absolute;top:-120px;left:4%;width:360px;height:360px;border-radius:50%;background:radial-gradient(closest-side,rgba(237,171,67,.16),transparent 70%)}
+  .phead h1{font-size:clamp(2.6rem,5.6vw,4rem);margin:1rem 0 .8rem}.phead p{color:var(--ink-soft);font-size:1.14rem;max-width:58ch}
+  .team{padding:1rem 0 5rem}
+  .tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+  @media(max-width:900px){.tgrid{grid-template-columns:1fr 1fr}}@media(max-width:600px){.tgrid{grid-template-columns:1fr}}
+  .tm{background:var(--paper);border:1px solid var(--line);border-radius:22px;overflow:hidden;transition:.3s}
+  .tm:hover{transform:translateY(-5px);box-shadow:0 24px 50px -30px rgba(33,56,74,.55)}
+  .tm .ph{aspect-ratio:1/1;background-size:cover;background-position:center top;background-color:var(--cream-2)}
+  .tm .bd{padding:1.5rem 1.5rem 1.7rem}
+  .tm .role{font-weight:700;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--green-deep)}
+  .tm h3{font-size:1.4rem;margin:.25rem 0 .6rem}
+  .tm p{color:var(--ink-soft);font-size:.94rem}
+  .tm.feat{grid-column:span 1;border-color:var(--green)}
+  .tm.feat .role{color:var(--honey-deep)}
+  .cta{background:var(--green);color:#fff;text-align:center;padding:5rem 0;position:relative;overflow:hidden}.cta::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 80% 0,rgba(237,171,67,.28),transparent 45%)}
+  .cta h2{font-size:clamp(1.9rem,3.6vw,2.8rem);max-width:24ch;margin:.6rem auto 1.4rem;position:relative;z-index:2}.cta .btn-honey{position:relative;z-index:2}.note{font-family:var(--hand);font-size:1.4rem;color:#fff;display:block;margin-top:1rem;position:relative;z-index:2;opacity:.9}
+  footer{background:var(--ink-2);color:rgba(251,243,230,.6);padding:2.6rem 0;font-size:.86rem}.foot-in{display:flex;justify-content:space-between;gap:1.4rem;flex-wrap:wrap;align-items:center;max-width:1160px;margin:0 auto;padding:0 30px}footer b{color:var(--honey);font-family:var(--disp);font-weight:700;font-size:1.05rem}footer a{color:rgba(251,243,230,.75)}footer a:hover{color:var(--honey)}
+  .rev{opacity:0;transform:translateY(22px);transition:.7s}.rev.in{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-in">
+    <a class="brand" href="index.html"><svg class="mark" style="flex:none" width="30" height="30" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-label="Add Value Makeover"><rect x="2" y="2" width="60" height="60" rx="17" fill="#2f9e7c"/><text x="31" y="45" font-family="Bricolage Grotesque,serif" font-weight="800" font-size="38" fill="#fffaf0" text-anchor="middle">M</text><circle cx="48" cy="17" r="5" fill="#edab43"/></svg><span><span class="t">Add Value <span>Makeover</span></span><span class="g">An Add Value Group Co.</span></span></a>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="process.html">Our Process</a>
+      <a href="projects.html">Our Work</a>
+      <a href="about.html">About</a>
+      <a href="team.html" class="on">Our Team</a>
+      <a href="renovation-centre.html">Renovation Centre</a>
+      <a href="areas-we-cover.html">Areas</a>
+      <a class="nav-cta" href="add-value-makeover-estimator.html">Instant Estimate</a>
+    </nav>
+  </div>
+</header>
+
+<section class="phead">
+  <div class="wrap rev in">
+    <span class="overline">Our Team</span>
+    <h1>One crew. <span class="hl green">One standard.</span></h1>
+    <p>The same in-house team behind 500+ Auckland renovations runs your refresh — a director, a master painter, a designer, a quantity surveyor, a site manager and an architectural designer, all under one roof.</p>
+  </div>
+</section>
+
+<section class="team">
+  <div class="wrap">
+    <div class="tgrid">
+
+      <div class="tm rev in">
+        <div class="ph" style="background-image:url('https://addvaluerenovations.co.nz/wp-content/uploads/Image_20260307111538_46_614.png')"></div>
+        <div class="bd"><div class="role">Director</div><h3>Simon Liu</h3><p>A qualified carpenter and Licensed Building Practitioner with over a decade on the tools, Simon leads every project with a builder's eye and a sharp focus on quality, timelines and a stress-free experience for the homeowner.</p></div>
+      </div>
+
+      <div class="tm feat rev in">
+        <div class="ph" style="background-image:url('https://addvaluerenovations.co.nz/wp-content/uploads/Image_20260307114856_61_614.png')"></div>
+        <div class="bd"><div class="role">Master Painter</div><h3>Wayne An</h3><p>Twenty-plus years and a genuine love of a flawless finish. Wayne knows a great paint job starts long before the first coat — in the prep — and ends with detail only a true tradesman delivers. He's the reason a Makeover looks like new.</p></div>
+      </div>
+
+      <div class="tm rev in">
+        <div class="ph" style="background-image:url('https://addvaluerenovations.co.nz/wp-content/uploads/Image_20260307114857_62_614.png')"></div>
+        <div class="bd"><div class="role">Home &amp; Interior Designer</div><h3>Joanna Jeong</h3><p>The creative eye behind our interiors. Joanna chooses the palettes, finishes and details that make a home feel fresh and buyer-ready — balancing style with what actually adds value at sale time.</p></div>
+      </div>
+
+      <div class="tm rev in">
+        <div class="ph" style="background-image:url('https://addvaluerenovations.co.nz/wp-content/uploads/Image_20260307114855_60_614.png')"></div>
+        <div class="bd"><div class="role">Quantity Surveyor</div><h3>Shelley Zhao</h3><p>Shelley keeps your pricing honest and your project on track. She builds and maintains the rate database that lets us give a fixed, transparent quote up front — then watches the costs and schedule the whole way through.</p></div>
+      </div>
+
+      <div class="tm rev in">
+        <div class="ph" style="background-image:url('https://addvaluerenovations.co.nz/wp-content/uploads/Image_20260307111538_48_614.png')"></div>
+        <div class="bd"><div class="role">Project Site Manager</div><h3>Timothy Kim</h3><p>Tim turns the plan into reality on site. Hands-on and meticulous, he coordinates the crew, holds the standard, and keeps every stage running on schedule and on budget — so your weeks don't slip.</p></div>
+      </div>
+
+      <div class="tm rev in">
+        <div class="ph" style="background-image:url('https://addvaluerenovations.co.nz/wp-content/uploads/Image_20260307111742_54_614.png')"></div>
+        <div class="bd"><div class="role">Architectural Designer</div><h3>Shirong Zhang</h3><p>Holding a Master of Architecture and LBP Design 2, Shirong bridges design and buildability. When a refresh needs more — a wall moved, a space reworked — he makes sure it's feasible, on budget and sound.</p></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap">
+    <span class="overline" style="color:#fff">Meet us on site</span>
+    <h2>Want this team on your home before you sell?</h2>
+    <a class="btn btn-honey" href="add-value-makeover-estimator.html">Get your instant estimate <span class="arrow">→</span></a>
+    <span class="note">or call 09 393 5658</span>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-in">
+    <div><b>Add Value Makeover</b> · An Add Value Group company</div>
+    <div style="display:flex;gap:1.2rem;flex-wrap:wrap"><a href="index.html">Home</a><a href="process.html">Process</a><a href="projects.html">Our Work</a><a href="about.html">About</a><a href="add-value-makeover-estimator.html">Estimate</a></div>
+    <div>09 393 5658 · Newmarket, Auckland · © 2026 Add Value Group</div>
+  </div>
+</footer>
+
+<script>
+  const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}}),{threshold:.12});
+  document.querySelectorAll('.rev').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

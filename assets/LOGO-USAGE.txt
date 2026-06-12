@@ -1,0 +1,33 @@
+ADD VALUE REFRESH — LOGO ASSETS
+================================
+Mark: The Monogram (green chip · cream "M" · honey dot)
+
+WHICH FILE TO USE
+-----------------
+logo-mark.svg .................. Primary mark, full colour. Web, app icon, social avatar.
+logo-mark-reversed.svg ......... Mark for DARK backgrounds (cream chip, ink R).
+logo-mark-ink.svg .............. One-colour version. Stamps, engraving, single-colour print.
+logo-horizontal.svg ............ Full lockup: mark + "Add Value Makeover" + group line. Default for letterhead, email signature, proposal cover, signage.
+logo-horizontal-reversed.svg ... Full lockup for dark backgrounds.
+logo-stacked.svg ............... Mark over wordmark, centred. Use when width is tight (square spaces).
+
+PNG (for things that can't take SVG)
+------------------------------------
+logo-mark-512.png / -1024.png .. Raster mark.
+logo-horizontal-2x.png ......... Raster lockup (email signatures).
+logo-stacked-2x.png ............ Raster stacked lockup.
+
+FAVICON / DEVICE ICONS (already wired into all site pages)
+----------------------------------------------------------
+favicon.svg, favicon-32.png, favicon-16.png, apple-touch-icon.png
+
+RULES
+-----
+- Green chip stays green (#2f9e7c). R stays cream (#fffaf0). Dot stays honey (#edab43).
+- Don't recolour, stretch, rotate, or add shadows/effects.
+- Keep clear space around it equal to the chip height.
+- Mark min size 24px on screen. Below that, it stops being legible.
+- Place only on cream, paper, ink, or green. Never on a busy photo without a solid pad.
+- Don't use the AVR navy/gold palette — this is the Makeover brand.
+
+Full system: add-value-makeover-brand-guide.html
