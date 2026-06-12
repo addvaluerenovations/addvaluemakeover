@@ -426,7 +426,7 @@ function buildPDF(){
   doc.setTextColor(cream[0],cream[1],cream[2]); doc.setFont('helvetica','bold'); doc.setFontSize(20); doc.text("Add Value Makeover",64,46);
   doc.setFontSize(8); doc.setTextColor(honey[0],honey[1],honey[2]); doc.text("AN ADD VALUE GROUP COMPANY",64,60);
   doc.setTextColor(cream[0],cream[1],cream[2]); doc.setFontSize(8); doc.setFont('helvetica','normal');
-  doc.text("09 393 5658   |   info@addvaluerenovations.co.nz   |   Newmarket, Auckland",64,74);
+  doc.text("09 393 5658   |   hallo@avr.nz   |   Newmarket, Auckland",64,74);
   let y=132;
   doc.setTextColor(ink[0],ink[1],ink[2]); doc.setFont('helvetica','bold'); doc.setFontSize(22); doc.text("Your Instant Estimate",40,y); y+=26;
   doc.setFont('helvetica','normal'); doc.setFontSize(10); doc.setTextColor(soft[0],soft[1],soft[2]);
@@ -454,7 +454,7 @@ function buildPDF(){
   doc.setTextColor(255,255,255); doc.setFont('helvetica','bold'); doc.setFontSize(13);
   doc.text("Ready for a fixed quote? Book a free walk-through.",W/2,y+24,{align:'center'});
   doc.setFontSize(11); doc.setFont('helvetica','normal');
-  doc.text("Call 09 393 5658  or  info@addvaluerenovations.co.nz",W/2,y+41,{align:'center'});
+  doc.text("Call 09 393 5658  or  hallo@avr.nz",W/2,y+41,{align:'center'});
   return doc;
 }
 
@@ -462,7 +462,7 @@ $('#rPdf').onclick=function(){ buildPDF().save("Add-Value-Refresh-Estimate.pdf")
 $('#rBook').onclick=function(){
   const lines=EST.items.map(function(i){return "• "+i[0]+": "+fmt(i[1])+"–"+fmt(i[2]);}).join('%0D%0A')||"(none)";
   const body="Hi Add Value Makeover,%0D%0A%0D%0AI'd like to book a free walk-through.%0D%0A%0D%0AName: "+encodeURIComponent(S.name)+"%0D%0APhone: "+encodeURIComponent(S.phone)+"%0D%0AProperty: "+encodeURIComponent(S.addr)+"%0D%0AList date: "+encodeURIComponent(S.list||'—')+"%0D%0A%0D%0AProject: "+encodeURIComponent(EST.type)+"%0D%0A"+lines+"%0D%0AEstimate: "+fmt(EST.lo)+"–"+fmt(EST.hi)+"%0D%0ATimeline: "+encodeURIComponent(EST.time);
-  window.location.href="mailto:info@addvaluerenovations.co.nz?subject=Free%20walk-through%20request%20-%20"+encodeURIComponent(S.name)+"&body="+body;
+  window.location.href="mailto:hallo@avr.nz?subject=Free%20walk-through%20request%20-%20"+encodeURIComponent(S.name)+"&body="+body;
 };
 
 /* ===== EMAIL TO OWNER (via webhook) ===== */
