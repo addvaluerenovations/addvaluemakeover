@@ -16,9 +16,11 @@ HOW TO USE
 NOTES
   - Project & team photos are loaded from addvaluerenovations.co.nz. Replace with
     Refresh-specific images on your own hosting when ready.
+  - Contact form: posts to /api/contact on Vercel and sends to hallo@avr.nz by
+    default. Production needs EMAIL_WEBHOOK_URL and EMAIL_WEBHOOK_TOKEN set.
+    CONTACT_TO_EMAIL can override the recipient if needed.
   - Estimator: to switch on the auto-email to the owner + Notion lead, open
     add-value-makeover-estimator.html and paste your webhook URL into:
         const WEBHOOK_URL = "";
-  - Contact details/phone currently use AVR's. Swap when Refresh has its own.
 
 © 2026 Add Value Group

@@ -188,9 +188,13 @@
   .cdetail a svg{width:22px;height:22px;stroke:var(--green-deep);fill:none;stroke-width:1.8;flex:none}
   .form{background:var(--paper);border:1px solid var(--line);border-radius:24px;padding:2.5rem;box-shadow:0 30px 60px -42px rgba(33,56,74,.5)}
   .form label{display:block;font-size:.76rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);margin:1rem 0 .4rem;font-weight:700}
-  .form input,.form select{width:100%;padding:.85rem 1rem;border-radius:12px;border:1px solid var(--line);background:var(--cream);color:var(--ink);font-family:var(--sans);font-size:1rem}
-  .form input:focus,.form select:focus{outline:none;border-color:var(--green)}
+  .form input,.form select,.form textarea{width:100%;padding:.85rem 1rem;border-radius:12px;border:1px solid var(--line);background:var(--cream);color:var(--ink);font-family:var(--sans);font-size:1rem}
+  .form textarea{min-height:110px;resize:vertical}
+  .form input:focus,.form select:focus,.form textarea:focus{outline:none;border-color:var(--green)}
   .form .btn-green{width:100%;justify-content:center;margin-top:1.5rem}
+  .hp{position:absolute;left:-9999px;opacity:0;pointer-events:none}
+  .form-status{margin-top:1rem;font-weight:700;color:var(--green-deep)}
+  .form-status.err{color:var(--coral)}
   @media(max-width:880px){.contact-grid{grid-template-columns:1fr;gap:2.5rem}}
 
   footer{background:var(--ink);color:rgba(251,243,230,.65);padding:3rem 0;font-size:.87rem}
@@ -405,15 +409,22 @@
           <a href="#"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> 110 Carlton Gore Road, Newmarket, Auckland</a>
         </div>
       </div>
-      <div class="form rev">
+      <form class="form rev" id="contactForm">
+        <div class="hp" aria-hidden="true">
+          <label for="company">Company</label>
+          <input id="company" name="company" tabindex="-1" autocomplete="off">
+        </div>
+        <input type="hidden" id="submittedAt" name="submittedAt">
         <label for="name">Name</label>
-        <input id="name" placeholder="Your name">
+        <input id="name" name="name" placeholder="Your name" autocomplete="name" required>
         <label for="phone">Phone</label>
-        <input id="phone" placeholder="Best number to reach you">
+        <input id="phone" name="phone" placeholder="Best number to reach you" autocomplete="tel">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email">
         <label for="addr">Property address</label>
-        <input id="addr" placeholder="Street, suburb">
+        <input id="addr" name="address" placeholder="Street, suburb" autocomplete="street-address">
         <label for="svc">What do you need?</label>
-        <select id="svc">
+        <select id="svc" name="service">
           <option>1-week kitchen &amp; bathroom refresh</option>
           <option>Full 4-week sale-ready package</option>
           <option>Interior repaint only</option>
@@ -421,9 +432,12 @@
           <option>Not sure — need a hand</option>
         </select>
         <label for="when">When would you like to list?</label>
-        <input id="when" placeholder="e.g. early next month">
-        <button class="btn btn-green" id="send">Send enquiry <span class="arrow">→</span></button>
-      </div>
+        <input id="when" name="listDate" placeholder="e.g. early next month">
+        <label for="msg">Anything else?</label>
+        <textarea id="msg" name="message" placeholder="Tell us the main jobs or timing pressure."></textarea>
+        <button class="btn btn-green" id="send" type="submit">Send enquiry <span class="arrow">→</span></button>
+        <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
+      </form>
     </div>
   </div>
 </section>
@@ -439,10 +453,46 @@
 <script>
   const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:.15});
   document.querySelectorAll('.rev,.stagger').forEach(el=>io.observe(el));
-  document.getElementById('send').addEventListener('click',()=>{
-    const v=id=>encodeURIComponent(document.getElementById(id).value||'—');
-    const body=`Name: ${v('name')}%0D%0APhone: ${v('phone')}%0D%0AProperty: ${v('addr')}%0D%0AService: ${v('svc')}%0D%0AList date: ${v('when')}`;
-    window.location.href=`mailto:hallo@avr.nz?subject=Pre-sale%20refresh%20enquiry&body=${body}`;
+  const contactForm=document.getElementById('contactForm');
+  const statusEl=document.getElementById('formStatus');
+  const submittedAt=document.getElementById('submittedAt');
+  const sendBtn=document.getElementById('send');
+  submittedAt.value=String(Date.now());
+  contactForm.addEventListener('submit',async(e)=>{
+    e.preventDefault();
+    statusEl.textContent='';
+    statusEl.classList.remove('err');
+    if(!document.getElementById('phone').value && !document.getElementById('email').value){
+      statusEl.textContent='Add a phone number or email so we can reply.';
+      statusEl.classList.add('err');
+      return;
+    }
+    sendBtn.disabled=true;
+    sendBtn.innerHTML='Sending...';
+    const payload={
+      source:'Add Value Makeover - Contact form',
+      page:window.location.href,
+      submittedAt:submittedAt.value
+    };
+    new FormData(contactForm).forEach((value,key)=>{payload[key]=value;});
+    try{
+      const res=await fetch('/api/contact',{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify(payload)
+      });
+      const data=await res.json().catch(()=>({}));
+      if(!res.ok) throw new Error(data.error||'Your enquiry could not be sent.');
+      contactForm.reset();
+      submittedAt.value=String(Date.now());
+      statusEl.textContent="Thanks - your enquiry has been sent. We'll be in touch shortly.";
+    }catch(err){
+      statusEl.textContent=err.message||'Your enquiry could not be sent. Please call 09 393 5658.';
+      statusEl.classList.add('err');
+    }finally{
+      sendBtn.disabled=false;
+      sendBtn.innerHTML='Send enquiry <span class="arrow">→</span>';
+    }
   });
 </script>
 </body>
