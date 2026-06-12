@@ -1,4 +1,4 @@
-const DEFAULT_TO = "hallo@avr.nz";
+const DEFAULT_TO = "hello@avr.nz";
 const SITE_NAME = "Add Value Makeover";
 const WINDOW_MS = 10 * 60 * 1000;
 const MAX_SUBMISSIONS_PER_WINDOW = 5;
